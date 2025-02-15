@@ -1,0 +1,63 @@
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+interface Genset {
+    voltage: string;
+    device_id:string;
+    location:string
+    power: string;
+    kw: string;
+    kva: string;
+    pf: string;
+    current: string;
+    enginerun: string;
+    freq: string;
+    engineRpm: string;
+    coolerTemp: string;
+    oilPressure: string;
+    batteryVoltage: string;
+    fuellevel: string;
+  }
+  
+  interface Common {
+    voltage: string;
+    current: string;
+    power: string;
+    kva: string;
+    freq: string;
+  }
+  
+  interface GensetStatus {
+    genset1Status: string;
+    genset2Status: string;
+    genset12Status: string;
+  }
+
+@Entity()
+export class Device {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ type: 'jsonb' })
+  genset1: Genset;
+
+  @Column({ type: 'jsonb' })
+  genset2: Genset;
+
+  @Column({ type: 'jsonb' })
+  common: Common;
+
+  @Column({ type: 'boolean', default: false })
+  genset12Status: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  genset1Status: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  genset2Status: boolean;
+
+  @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP(6)' })
+  created_at: Date;
+
+  @UpdateDateColumn({ type: 'timestamptz' })
+  updated_at: Date;
+}
