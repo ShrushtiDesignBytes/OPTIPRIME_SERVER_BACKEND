@@ -30,6 +30,7 @@ export declare class Device {
     genset12Status: boolean;
     genset1Status: boolean;
     genset2Status: boolean;
+    deviceId: number;
     created_at: Date;
     updated_at: Date;
 }

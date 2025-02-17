@@ -55,6 +55,9 @@ export class Device {
   @Column({ type: 'boolean', default: false })
   genset2Status: boolean;
 
+  @Column({ type: 'int'})
+  deviceId: number;
+
   @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP(6)' })
   created_at: Date;
 

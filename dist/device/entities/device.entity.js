@@ -43,6 +43,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Device.prototype, "genset2Status", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], Device.prototype, "deviceId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP(6)' }),
     __metadata("design:type", Date)
 ], Device.prototype, "created_at", void 0);

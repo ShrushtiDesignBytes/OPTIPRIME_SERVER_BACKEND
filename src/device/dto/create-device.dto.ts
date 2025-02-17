@@ -1,3 +1,4 @@
+import { IntegerType } from "typeorm";
 
 
 
@@ -43,5 +44,6 @@ interface GensetDTO {
     genset12Status: boolean;
     genset1Status: boolean;
     genset2Status: boolean;
+    deviceId: number;
   }
   

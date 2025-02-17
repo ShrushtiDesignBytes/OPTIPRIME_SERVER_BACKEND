@@ -29,5 +29,6 @@ export declare class CreateDeviceDto {
     genset12Status: boolean;
     genset1Status: boolean;
     genset2Status: boolean;
+    deviceId: number;
 }
 export {};
