@@ -7,7 +7,7 @@ export declare class DeviceService {
     constructor(deviceRepository: Repository<Device>);
     create(createDeviceDto: CreateDeviceDto): Promise<Device>;
     findAll(): Promise<Device[]>;
-    findOne(): Promise<Device>;
+    findOne(deviceId: number): Promise<Device>;
     dashboardGraph(type: string, date: string): Promise<any[]>;
     gensetGraph(type: string, genset: string, date: string): Promise<any[]>;
     update(id: number, updateDeviceDto: UpdateDeviceDto): Promise<Device>;

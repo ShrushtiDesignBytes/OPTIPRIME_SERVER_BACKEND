@@ -28,7 +28,7 @@ let DeviceController = class DeviceController {
         return this.deviceService.findAll();
     }
     findOne(id) {
-        return this.deviceService.findOne();
+        return this.deviceService.findOne(parseInt(id));
     }
     dashboardGraph(body) {
         return this.deviceService.dashboardGraph(body.type, body.date);
@@ -61,7 +61,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DeviceController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)('/find'),
+    (0, common_1.Get)('/find/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

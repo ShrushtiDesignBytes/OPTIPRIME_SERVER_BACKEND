@@ -34,14 +34,8 @@ let DeviceService = class DeviceService {
         });
         return configs;
     }
-    async findOne() {
-        const config = await this.deviceRepository.find({
-            order: {
-                created_at: 'DESC',
-            },
-            take: 1,
-        });
-        return config[0];
+    async findOne(deviceId) {
+        return await this.deviceRepository.findOne({ where: { deviceId } });
     }
     async dashboardGraph(type, date) {
         const startDate = date ? new Date(date) : new Date();

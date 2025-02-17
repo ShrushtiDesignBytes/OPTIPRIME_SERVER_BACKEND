@@ -10,7 +10,7 @@ export class DeviceService {
   constructor(
     @InjectRepository(Device)
     private deviceRepository: Repository<Device>,
-  ) {}
+  ) { }
 
   async create(createDeviceDto: CreateDeviceDto) {
     const device = this.deviceRepository.create(createDeviceDto);
@@ -27,14 +27,8 @@ export class DeviceService {
     return configs;
   }
 
-  async findOne() {
-    const config = await this.deviceRepository.find({
-      order: {
-        created_at: 'DESC',
-      },
-      take: 1,
-    });
-    return config[0];
+  async findOne(deviceId: number) {
+    return await this.deviceRepository.findOne({ where: { deviceId } });
   }
 
   async dashboardGraph(type: string, date: string) {
@@ -110,7 +104,7 @@ export class DeviceService {
   }
 
   async updateData(updateDeviceDto: UpdateDeviceDto) {
-    const configs = await this.deviceRepository.find({take:1,order:{created_at:"DESC"}})
+    const configs = await this.deviceRepository.find({ take: 1, order: { created_at: "DESC" } })
     if (!configs) {
       throw new BadRequestException('No Config Found');
     }
