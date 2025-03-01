@@ -26,9 +26,6 @@ export declare class CreateDeviceDto {
     genset1: GensetDTO;
     genset2: GensetDTO;
     common: CommonDTO;
-    genset12Status: boolean;
-    genset1Status: boolean;
-    genset2Status: boolean;
     deviceId: number;
 }
 export {};

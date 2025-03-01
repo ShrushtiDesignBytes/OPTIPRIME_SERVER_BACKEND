@@ -27,9 +27,6 @@ export declare class Device {
     genset1: Genset;
     genset2: Genset;
     common: Common;
-    genset12Status: boolean;
-    genset1Status: boolean;
-    genset2Status: boolean;
     deviceId: number;
     created_at: Date;
     updated_at: Date;

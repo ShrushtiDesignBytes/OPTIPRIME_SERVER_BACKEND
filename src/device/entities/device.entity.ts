@@ -46,14 +46,14 @@ export class Device {
   @Column({ type: 'jsonb' })
   common: Common;
 
-  @Column({ type: 'boolean', default: false })
-  genset12Status: boolean;
+  // @Column({ type: 'boolean', default: false })
+  // genset12Status: boolean;
 
-  @Column({ type: 'boolean', default: false })
-  genset1Status: boolean;
+  // @Column({ type: 'boolean', default: false })
+  // genset1Status: boolean;
 
-  @Column({ type: 'boolean', default: false })
-  genset2Status: boolean;
+  // @Column({ type: 'boolean', default: false })
+  // genset2Status: boolean;
 
   @Column({ type: 'int'})
   deviceId: number;

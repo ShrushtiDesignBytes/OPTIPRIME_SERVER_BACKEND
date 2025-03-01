@@ -31,18 +31,6 @@ __decorate([
     __metadata("design:type", Object)
 ], Device.prototype, "common", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Device.prototype, "genset12Status", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Device.prototype, "genset1Status", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
-    __metadata("design:type", Boolean)
-], Device.prototype, "genset2Status", void 0);
-__decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
 ], Device.prototype, "deviceId", void 0);

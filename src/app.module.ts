@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DeviceModule } from './device/device.module';
+import { StatusModule } from './status/status.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {ConfigModule } from '@nestjs/config'
+import {ConfigModule } from '@nestjs/config';
+import { Status } from './status/entities/status.entity';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -23,7 +25,7 @@ import {ConfigModule } from '@nestjs/config'
         },
       },
     }),
-    DeviceModule],
+    DeviceModule, StatusModule],
   controllers: [AppController],
   providers: [AppService],
 })

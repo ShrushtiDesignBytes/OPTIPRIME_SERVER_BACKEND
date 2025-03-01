@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const device_module_1 = require("./device/device.module");
+const status_module_1 = require("./status/status.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
@@ -29,14 +30,8 @@ exports.AppModule = AppModule = __decorate([
                 database: process.env.DB_NAME,
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
                 synchronize: true,
-                ssl: true,
-                extra: {
-                    ssl: {
-                        rejectUnauthorized: false,
-                    },
-                },
             }),
-            device_module_1.DeviceModule
+            device_module_1.DeviceModule, status_module_1.StatusModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
