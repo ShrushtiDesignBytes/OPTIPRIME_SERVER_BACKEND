@@ -33,9 +33,8 @@ export class DeviceService {
 
   async findOne(deviceId: number) {
     //return await this.deviceRepository.findOne({ where: { deviceId }, relations: ['statuses'] });
-    const device = await this.deviceRepository.findOne({
-      where: { deviceId },
-      relations: ['statuses'],
+    const device = await this.deviceRepository.find({
+      where: { deviceId }
     });
 
     const statuses = await this.statusRepository.find({
