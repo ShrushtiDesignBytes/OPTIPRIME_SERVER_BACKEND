@@ -15,11 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeviceService = void 0;
 const common_1 = require("@nestjs/common");
 const device_entity_1 = require("./entities/device.entity");
+const status_entity_1 = require("../status/entities/status.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 let DeviceService = class DeviceService {
-    constructor(deviceRepository) {
+    constructor(deviceRepository, statusRepository) {
         this.deviceRepository = deviceRepository;
+        this.statusRepository = statusRepository;
     }
     async create(createDeviceDto) {
         const device = this.deviceRepository.create(createDeviceDto);
@@ -35,7 +37,14 @@ let DeviceService = class DeviceService {
         return configs;
     }
     async findOne(deviceId) {
-        return await this.deviceRepository.findOne({ where: { deviceId } });
+        const device = await this.deviceRepository.findOne({
+            where: { deviceId },
+            relations: ['statuses'],
+        });
+        const statuses = await this.statusRepository.find({
+            where: { deviceId },
+        });
+        return { device, statuses };
     }
     async dashboardGraph(type, date) {
         const startDate = date ? new Date(date) : new Date();
@@ -110,6 +119,8 @@ exports.DeviceService = DeviceService;
 exports.DeviceService = DeviceService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(device_entity_1.Device)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(status_entity_1.Status)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], DeviceService);
 //# sourceMappingURL=device.service.js.map

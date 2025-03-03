@@ -17,9 +17,13 @@ export class StatusController {
         return await this.statusService.getLatestGensetStatus();
     }
 
-    @Patch(':id')
-      update(@Param('id') id: string, @Body() updateStatusDto: UpdateStatusDto) {
-        return this.statusService.update(+id, updateStatusDto);
-      }
-    
+    @Get('/:id')
+    findOne(@Param('id') id: string) {
+      return this.statusService.findOne(parseInt(id));
+    }
+
+    @Patch('/:deviceId')
+    update(@Param('deviceId') deviceId: number, @Body() updateStatusDto: UpdateStatusDto) {
+        return this.statusService.updateByDeviceId(+deviceId, updateStatusDto);
+    }
 }

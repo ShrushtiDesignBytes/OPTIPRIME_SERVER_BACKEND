@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, UpdateDateColumn } from 'typeorm';
+import { Status } from '../../status/entities/status.entity'; 
+
 
 interface Genset {
     voltage: string;
@@ -63,4 +65,7 @@ export class Device {
 
   @UpdateDateColumn({ type: 'timestamptz' })
   updated_at: Date;
+
+  @OneToMany(() => Status, (status) => status.device)
+    statuses: Status[];
 }

@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
 import { Device } from './entities/device.entity';
+import { Status } from '../status/entities/status.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Not, Repository, getRepository } from 'typeorm';
 
@@ -10,6 +11,9 @@ export class DeviceService {
   constructor(
     @InjectRepository(Device)
     private deviceRepository: Repository<Device>,
+
+    @InjectRepository(Status)
+    private statusRepository: Repository<Status>,
   ) { }
 
   async create(createDeviceDto: CreateDeviceDto) {
@@ -28,7 +32,17 @@ export class DeviceService {
   }
 
   async findOne(deviceId: number) {
-    return await this.deviceRepository.findOne({ where: { deviceId } });
+    //return await this.deviceRepository.findOne({ where: { deviceId }, relations: ['statuses'] });
+    const device = await this.deviceRepository.findOne({
+      where: { deviceId },
+      relations: ['statuses'],
+    });
+
+    const statuses = await this.statusRepository.find({
+      where: { deviceId },
+    });
+
+    return { device, statuses };
   }
 
   async dashboardGraph(type: string, date: string) {

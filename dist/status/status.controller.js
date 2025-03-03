@@ -27,8 +27,11 @@ let StatusController = class StatusController {
     async getLatestGensetStatus() {
         return await this.statusService.getLatestGensetStatus();
     }
-    update(id, updateStatusDto) {
-        return this.statusService.update(+id, updateStatusDto);
+    findOne(id) {
+        return this.statusService.findOne(parseInt(id));
+    }
+    update(deviceId, updateStatusDto) {
+        return this.statusService.updateByDeviceId(+deviceId, updateStatusDto);
     }
 };
 exports.StatusController = StatusController;
@@ -46,11 +49,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StatusController.prototype, "getLatestGensetStatus", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StatusController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)('/:deviceId'),
+    __param(0, (0, common_1.Param)('deviceId')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_status_dto_1.UpdateStatusDto]),
+    __metadata("design:paramtypes", [Number, update_status_dto_1.UpdateStatusDto]),
     __metadata("design:returntype", void 0)
 ], StatusController.prototype, "update", null);
 exports.StatusController = StatusController = __decorate([

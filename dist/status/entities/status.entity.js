@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Status = void 0;
 const typeorm_1 = require("typeorm");
+const device_entity_1 = require("../../device/entities/device.entity");
 let Status = class Status {
 };
 exports.Status = Status;
@@ -34,6 +35,15 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', default: 'false' }),
     __metadata("design:type", String)
 ], Status.prototype, "flag", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => device_entity_1.Device, (device) => device.statuses, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'deviceId' }),
+    __metadata("design:type", device_entity_1.Device)
+], Status.prototype, "device", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], Status.prototype, "deviceId", void 0);
 exports.Status = Status = __decorate([
     (0, typeorm_1.Entity)()
 ], Status);

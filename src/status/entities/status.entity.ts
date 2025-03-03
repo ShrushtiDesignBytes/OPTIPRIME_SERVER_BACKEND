@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn  } from 'typeorm';
+import { Device } from '../../device/entities/device.entity';
 
 @Entity()
 export class Status {
@@ -16,5 +17,12 @@ export class Status {
 
     @Column({ type: 'varchar', default: 'false' })
     flag: string;
+
+    @ManyToOne(() => Device, (device) => device.statuses, { onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'deviceId' })
+    device: Device;
+
+    @Column({ type: 'int' })
+    deviceId: number;
     
 }

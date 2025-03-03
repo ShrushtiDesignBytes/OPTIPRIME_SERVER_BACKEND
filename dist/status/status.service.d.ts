@@ -7,5 +7,6 @@ export declare class StatusService {
     constructor(StatusRepository: Repository<Status>);
     createGensetStatus(dto: CreateStatusDto): Promise<Status>;
     getLatestGensetStatus(): Promise<Status | null>;
-    update(id: number, updateStatusDto: UpdateStatusDto): Promise<Status>;
+    updateByDeviceId(deviceId: number, updateStatusDto: UpdateStatusDto): Promise<Status>;
+    findOne(deviceId: number): Promise<Status>;
 }

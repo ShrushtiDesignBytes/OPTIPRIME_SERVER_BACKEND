@@ -6,5 +6,6 @@ export declare class StatusController {
     constructor(statusService: StatusService);
     createGensetStatus(dto: CreateStatusDto): Promise<import("src/status/entities/status.entity").Status>;
     getLatestGensetStatus(): Promise<import("src/status/entities/status.entity").Status>;
-    update(id: string, updateStatusDto: UpdateStatusDto): Promise<import("src/status/entities/status.entity").Status>;
+    findOne(id: string): Promise<import("src/status/entities/status.entity").Status>;
+    update(deviceId: number, updateStatusDto: UpdateStatusDto): Promise<import("src/status/entities/status.entity").Status>;
 }

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Device = void 0;
 const typeorm_1 = require("typeorm");
+const status_entity_1 = require("../../status/entities/status.entity");
 let Device = class Device {
 };
 exports.Device = Device;
@@ -42,6 +43,10 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)({ type: 'timestamptz' }),
     __metadata("design:type", Date)
 ], Device.prototype, "updated_at", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => status_entity_1.Status, (status) => status.device),
+    __metadata("design:type", Array)
+], Device.prototype, "statuses", void 0);
 exports.Device = Device = __decorate([
     (0, typeorm_1.Entity)()
 ], Device);

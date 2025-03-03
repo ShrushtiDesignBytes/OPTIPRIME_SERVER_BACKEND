@@ -32,10 +32,10 @@ let StatusService = class StatusService {
         });
         return latestStatus.length > 0 ? latestStatus[0] : null;
     }
-    async update(id, updateStatusDto) {
+    async updateByDeviceId(deviceId, updateStatusDto) {
         const config = await this.StatusRepository.findOne({
             where: {
-                id: id,
+                deviceId: deviceId,
             },
         });
         if (!config) {
@@ -44,6 +44,11 @@ let StatusService = class StatusService {
         Object.assign(config, updateStatusDto);
         await this.StatusRepository.save(config);
         return config;
+    }
+    async findOne(deviceId) {
+        return await this.StatusRepository.findOne({ where: {
+                deviceId: deviceId,
+            } });
     }
 };
 exports.StatusService = StatusService;

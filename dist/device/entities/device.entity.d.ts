@@ -1,3 +1,4 @@
+import { Status } from '../../status/entities/status.entity';
 interface Genset {
     voltage: string;
     device_id: string;
@@ -30,5 +31,6 @@ export declare class Device {
     deviceId: number;
     created_at: Date;
     updated_at: Date;
+    statuses: Status[];
 }
 export {};

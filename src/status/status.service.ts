@@ -26,10 +26,10 @@ export class StatusService {
         return latestStatus.length > 0 ? latestStatus[0] : null;
     }
 
-    async update(id: number, updateStatusDto: UpdateStatusDto) {
+    async updateByDeviceId(deviceId: number, updateStatusDto: UpdateStatusDto) {
         const config = await this.StatusRepository.findOne({
             where: {
-                id: id,
+                deviceId: deviceId,
             },
         });
         if (!config) {
@@ -39,4 +39,11 @@ export class StatusService {
         await this.StatusRepository.save(config);
         return config;
     }
+
+    async findOne(deviceId: number) {
+        return await this.StatusRepository.findOne({  where: {
+            deviceId: deviceId,
+        }});
+        
+      }
 }

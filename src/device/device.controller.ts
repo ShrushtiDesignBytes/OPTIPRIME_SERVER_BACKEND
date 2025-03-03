@@ -17,7 +17,7 @@ export class DeviceController {
     return this.deviceService.findAll();
   }
 
-  @Get('/find/:id')
+  @Get('/:id')
   findOne(@Param('id') id: string) {
     return this.deviceService.findOne(parseInt(id));
   }
