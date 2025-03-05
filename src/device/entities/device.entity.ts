@@ -2,6 +2,14 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, UpdateDateColumn } f
 import { Status } from '../../status/entities/status.entity'; 
 
 
+interface DeviceInfo {
+  [key: string]: any;
+}
+
+interface SystemInfo {
+  [key: string]: any;
+}
+
 interface Genset {
     voltage: string;
     device_id:string;
@@ -18,6 +26,8 @@ interface Genset {
     oilPressure: string;
     batteryVoltage: string;
     fuellevel: string;
+    deviceInfo: DeviceInfo;
+    systemInfo: SystemInfo;
   }
   
   interface Common {
