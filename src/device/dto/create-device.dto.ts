@@ -1,8 +1,13 @@
 import { IntegerType } from "typeorm";
 
+interface DeviceInfo {
+  [key: string]: any;
+}
 
+interface SystemInfo {
+  [key: string]: any;
+}
 
-// DTO interface for genset data
 interface GensetDTO {
     voltage: string;
     device_id:string;
@@ -19,6 +24,8 @@ interface GensetDTO {
     oilPressure: string;
     batteryVoltage: string;
     fuellevel: string;
+    deviceInfo: DeviceInfo;
+    systemInfo: SystemInfo;
   }
   
   // DTO interface for common data
