@@ -24,5 +24,17 @@ export class Status {
 
     @Column({ type: 'int' })
     deviceId: number;
-    
+
+    // added columns
+    @Column({ type: "timestamptz", nullable: true })
+    genset1LastTurnedOff: Date;
+  
+    @Column({ type: "timestamptz", nullable: true })
+    genset2LastTurnedOff: Date;
+  
+    @Column({ type: "timestamptz", nullable: true })
+    genset1LastTurnedOn: Date;
+  
+    @Column({ type: "timestamptz", nullable: true })
+    genset2LastTurnedOn: Date;  
 }
