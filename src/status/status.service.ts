@@ -6,6 +6,7 @@ import { CreateStatusDto } from "./dto/status-device.dto";
 import { UpdateStatusDto } from "./dto/update-status.dto";
 
 @Injectable()
+/*
 export class StatusService {
   constructor(
     @InjectRepository(Status)
@@ -50,6 +51,57 @@ export class StatusService {
           source: `genset${gensetName}`,
         };
       }
+<<<<<<< HEAD
+=======
+}
+*/
+
+// updated part
+export class StatusService {
+  constructor(
+    @InjectRepository(Status)
+    private readonly StatusRepository: Repository<Status>
+  ) {}
+
+  async createGensetStatus(dto: CreateStatusDto): Promise<Status> {
+    const gensetStatus = this.StatusRepository.create(dto);
+    return await this.StatusRepository.save(gensetStatus);
+  }
+
+  async getLatestGensetStatus(): Promise<Status | null> {
+    const latestStatus = await this.StatusRepository.find({
+      order: { id: "DESC" },
+      take: 1,
+    });
+    return latestStatus.length > 0 ? latestStatus[0] : null;
+  }
+
+  async updateByDeviceId(deviceId: number, updateStatusDto: UpdateStatusDto) {
+    const currentStatus = await this.StatusRepository.findOne({
+      where: { deviceId: deviceId },
+    });
+  
+    if (!currentStatus) {
+      throw new BadRequestException("No Config Found");
+    }
+  
+    const now = new Date().getTime();
+    const cooldownPeriod = 60000; // 1 minute
+    const warmupPeriod = 60000; // 1 minute
+  
+    // Helper function to check cooldown period
+    const checkCooldown = (lastTurnedOff: Date | null, gensetName: string) => {
+      if (!lastTurnedOff) return null;
+      
+      const remainingTime = cooldownPeriod - (now - lastTurnedOff.getTime());
+      if (remainingTime > 0) {
+        const timeLeft = Math.ceil(remainingTime / 60000);
+        return {
+          message: `Genset ${gensetName} cannot be turned on yet. Please wait ${timeLeft} minutes.`,
+          source: `genset${gensetName}`,
+        };
+      }
+>>>>>>> 80b678963c4c33ed3d71dedc73af6e90b47865b1
       return null;
     };
   
@@ -150,6 +202,7 @@ export class StatusService {
       }
     }
   
+<<<<<<< HEAD
     // Start with a clean updates object
     const updates: any = {};
     
@@ -184,14 +237,35 @@ export class StatusService {
       updates.genset2LastTurnedOn = new Date();
     }
     if (updates.genset2Status === false && currentStatus.genset2Status === true) {
+=======
+    // Record timestamps
+    const updates: any = { ...updateStatusDto };
+  
+    // Update turn on/off times for gensets
+    if (updateStatusDto.genset1Status === true && currentStatus.genset1Status === false) {
+      updates.genset1LastTurnedOn = new Date();
+    }
+    if (updateStatusDto.genset1Status === false && currentStatus.genset1Status === true) {
+      updates.genset1LastTurnedOff = new Date();
+    }
+    if (updateStatusDto.genset2Status === true && currentStatus.genset2Status === false) {
+      updates.genset2LastTurnedOn = new Date();
+    }
+    if (updateStatusDto.genset2Status === false && currentStatus.genset2Status === true) {
+>>>>>>> 80b678963c4c33ed3d71dedc73af6e90b47865b1
       updates.genset2LastTurnedOff = new Date();
     }
   
     // Apply all updates
     Object.assign(currentStatus, updates);
   
+<<<<<<< HEAD
     // Always recalculate genset12Status based on individual statuses to ensure consistency
     currentStatus.genset12Status = 
+=======
+    // Recalculate genset12Status based on individual statuses
+    currentStatus.genset12Status =
+>>>>>>> 80b678963c4c33ed3d71dedc73af6e90b47865b1
       currentStatus.genset1Status || currentStatus.genset2Status;
   
     await this.StatusRepository.save(currentStatus);
@@ -210,8 +284,13 @@ export class StatusService {
     }
   
     const now = new Date().getTime();
+<<<<<<< HEAD
     const cooldownPeriod = parseInt(process.env.COOLDOWN_TIME, 10);
     const warmupPeriod = parseInt(process.env.WARMUP_TIME, 10);
+=======
+    const cooldownPeriod = 60000;
+    const warmupPeriod = 60000;
+>>>>>>> 80b678963c4c33ed3d71dedc73af6e90b47865b1
   
     // Calculate remaining times for all gensets
     const calculateRemaining = (timestamp: Date | null, period: number, checkActive = false) => {
