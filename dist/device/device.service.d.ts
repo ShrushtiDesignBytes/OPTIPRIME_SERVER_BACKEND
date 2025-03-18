@@ -10,7 +10,7 @@ export declare class DeviceService {
     create(createDeviceDto: CreateDeviceDto): Promise<Device>;
     findAll(): Promise<Device[]>;
     findOne(deviceId: number): Promise<{
-        device: Device;
+        device: Device[];
         statuses: Status[];
     }>;
     dashboardGraph(type: string, date: string): Promise<any[]>;

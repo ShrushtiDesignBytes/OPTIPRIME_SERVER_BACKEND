@@ -7,4 +7,8 @@ export declare class Status {
     flag: string;
     device: Device;
     deviceId: number;
+    genset1LastTurnedOff: Date;
+    genset2LastTurnedOff: Date;
+    genset1LastTurnedOn: Date;
+    genset2LastTurnedOn: Date;
 }

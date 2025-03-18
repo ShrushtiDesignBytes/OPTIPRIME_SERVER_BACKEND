@@ -44,6 +44,22 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
 ], Status.prototype, "deviceId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "timestamptz", nullable: true }),
+    __metadata("design:type", Date)
+], Status.prototype, "genset1LastTurnedOff", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "timestamptz", nullable: true }),
+    __metadata("design:type", Date)
+], Status.prototype, "genset2LastTurnedOff", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "timestamptz", nullable: true }),
+    __metadata("design:type", Date)
+], Status.prototype, "genset1LastTurnedOn", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "timestamptz", nullable: true }),
+    __metadata("design:type", Date)
+], Status.prototype, "genset2LastTurnedOn", void 0);
 exports.Status = Status = __decorate([
     (0, typeorm_1.Entity)()
 ], Status);
