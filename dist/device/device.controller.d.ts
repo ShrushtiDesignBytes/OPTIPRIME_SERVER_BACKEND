@@ -7,7 +7,7 @@ export declare class DeviceController {
     create(createDeviceDto: CreateDeviceDto): Promise<import("src/device/entities/device.entity").Device>;
     findAll(): Promise<import("src/device/entities/device.entity").Device[]>;
     findOne(id: string): Promise<{
-        device: import("src/device/entities/device.entity").Device;
+        device: import("src/device/entities/device.entity").Device[];
         statuses: import("src/status/entities/status.entity").Status[];
     }>;
     dashboardGraph(body: {
