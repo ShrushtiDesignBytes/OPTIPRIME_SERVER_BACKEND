@@ -3,7 +3,7 @@ import { StatusService } from "./status.service";
 import { CreateStatusDto } from "./dto/status-device.dto";
 import { UpdateStatusDto } from "./dto/update-status.dto";
 
-@Controller("status")
+@Controller("opti/status")
 export class StatusController {
   constructor(private readonly statusService: StatusService) {}
 

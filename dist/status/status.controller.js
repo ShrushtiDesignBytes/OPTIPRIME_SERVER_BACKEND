@@ -64,7 +64,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StatusController.prototype, "update", null);
 exports.StatusController = StatusController = __decorate([
-    (0, common_1.Controller)("status"),
+    (0, common_1.Controller)("opti/status"),
     __metadata("design:paramtypes", [status_service_1.StatusService])
 ], StatusController);
 //# sourceMappingURL=status.controller.js.map

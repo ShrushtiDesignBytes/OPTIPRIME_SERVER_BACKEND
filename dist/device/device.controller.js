@@ -104,7 +104,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DeviceController.prototype, "remove", null);
 exports.DeviceController = DeviceController = __decorate([
-    (0, common_1.Controller)('device'),
+    (0, common_1.Controller)('opti/device'),
     __metadata("design:paramtypes", [device_service_1.DeviceService])
 ], DeviceController);
 //# sourceMappingURL=device.controller.js.map

@@ -1,3 +1,9 @@
+interface DeviceInfo {
+    [key: string]: any;
+}
+interface SystemInfo {
+    [key: string]: any;
+}
 interface GensetDTO {
     voltage: string;
     device_id: string;
@@ -14,6 +20,8 @@ interface GensetDTO {
     oilPressure: string;
     batteryVoltage: string;
     fuellevel: string;
+    deviceInfo: DeviceInfo;
+    systemInfo: SystemInfo;
 }
 interface CommonDTO {
     voltage: string;
